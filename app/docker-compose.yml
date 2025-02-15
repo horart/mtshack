@@ -33,7 +33,14 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - postgres
+      - ipcamera
     ports:
       - "8000:8000"
     volumes:
       - ./api:/usr/src/api
+
+  ipcamera:
+    build: ./ipcamera
+    hostname: ipcamera
+    volumes:
+      - ./ipcamera/loop.mp4:/loop.mp4
