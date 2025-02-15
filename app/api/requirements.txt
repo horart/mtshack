@@ -10,3 +10,6 @@ pandas
 deepface
 opencv-python-headless==4.9.0.80
 tf-keras
+omegaconf
+torch
+soundfile

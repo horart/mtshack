@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.database import engine, Base
 import api.modules.entrancedetector.routes
+import api.modules.text2speech
+import api.modules.text2speech.routes
 
 
 app = FastAPI(lifespan=api.modules.entrancedetector.routes.lifespan)
@@ -26,3 +28,4 @@ Base.metadata.create_all(bind=engine)
 app.include_router(api.modules.base.routes.router, tags=['Base'])
 app.include_router(api.modules.billpredict.routes.router, tags=['Billing'], prefix="/bill")
 app.include_router(api.modules.entrancedetector.routes.router, tags=['EntranceDetection'], prefix="/entrancecam")
+app.include_router(api.modules.text2speech.routes.router, tags=['TtsStt'])
