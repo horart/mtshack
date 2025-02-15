@@ -69,7 +69,8 @@ def get_pred(user_id: int, db: Session = Depends(get_db)):
         db.query(Billing)
         .filter(Billing.user_id == user_id)
         .order_by(Billing.month.desc())
-        .limit(12)
+        .limit(24)
         .all()
     )
-    return {"last_twelve_months": [BillingResponse.model_validate(i.__dict__) for i in last_twelve_months], "prediction": Predictor.predict(last_twelve_months)}
+    d = [BillingResponse.model_validate(i.__dict__) for i in last_twelve_months]
+    return {"last_twelve_months": d, "prediction": Predictor.predict([i.model_dump() for i in d])}

@@ -4,3 +4,6 @@ sqlalchemy
 typing-inspect
 psycopg2
 uvicorn
+statsmodels
+scikit-learn
+pandas
