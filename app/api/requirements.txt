@@ -2,3 +2,5 @@ fastapi[all]
 fastapi-utils
 sqlalchemy
 typing-inspect
+psycopg2
+uvicorn

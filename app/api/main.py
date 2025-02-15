@@ -1,28 +1,25 @@
-from app import models, note
+import api.modules.base.routes
+import api.modules.billpredict.routes
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import engine
+from api.database import engine, Base
 
-models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:3000",
-]
+# origins = [
+#     "http://localhost:3000",
+# ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-app.include_router(note.router, tags=['Notes'], prefix='/api/notes')
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+Base.metadata.create_all(bind=engine)
 
 
-@app.get("/api/healthchecker")
-def root():
-    return {"message": "Welcome to FastAPI with SQLAlchemy"}
+app.include_router(api.modules.base.routes.router, tags=['Base'])
+app.include_router(api.modules.billpredict.routes.router, tags=['Billing'], prefix="/bill")
