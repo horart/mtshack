@@ -16,3 +16,4 @@ soundfile
 torchaudio
 openai-whisper
 librosa
+mediapipe
