@@ -13,3 +13,6 @@ tf-keras
 omegaconf
 torch
 soundfile
+torchaudio
+openai-whisper
+librosa

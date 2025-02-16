@@ -11,6 +11,8 @@ services:
       POSTGRES_DB: etalon
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ./backup.sql:/docker-entrypoint-initdb.d/backup.sql
     restart: unless-stopped
 
     
